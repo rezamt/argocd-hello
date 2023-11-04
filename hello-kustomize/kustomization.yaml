@@ -1,19 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: hello-kustomize
 resources:
-- ./welcome.yaml
-# https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesjson6902/
-#  In this example we are just loading in one file. The (patchesJson6902 is a patching RFC that kustomize supports. As you can see, in the patchesJson6902 file, I am adding a label to this manifest.
+- deployment.yaml
+- namespace.yaml
 patchesJson6902:
-- patch: |-
-    - op: add
-      path: /metadata/labels/testkey
-      value: testvalue
-  target:
-    group: apps
-    kind: Deployment
-    name: welcome-php
-    version: v1
-images:
-- name: quay.io/redhatworkshops/welcome-php
-  newTag: lastest
+  - target:
+      version: v1
+      group: apps
+      kind: Deployment
+      name: bgd
+      namespace: hello-kustomize
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: yellow
