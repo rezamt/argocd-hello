@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-kustomize
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd-hello
+    server: https://192.168.0.215:16443
+  project: default
+  source:
+    path: hello-kustomize
+    repoURL: https://github.com/rezamt/argocd-hello
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
