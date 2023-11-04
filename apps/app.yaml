@@ -9,7 +9,7 @@ spec:
     server: https://192.168.0.215:16443
   project: default
   source:
-    path: apps/bgd/overlays/bgd
+    path: hello
     repoURL: https://github.com/rezamt/argocd-hello
     targetRevision: HEAD
   syncPolicy:
