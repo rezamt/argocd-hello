@@ -7,7 +7,7 @@ metadata:
   name: bgd
   namespace: argocd-hello
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: bgd
@@ -22,6 +22,6 @@ spec:
         name: bgd
         env:
         - name: COLOR
-          value: "red"
+          value: "green"
         resources: {}
 ---
