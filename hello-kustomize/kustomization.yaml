@@ -2,8 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: hello-kustomize
 resources:
-- deployment.yaml
 - namespace.yaml
+- service.yaml
+- deployment.yaml
 patchesJson6902:
   - target:
       version: v1
@@ -14,4 +15,4 @@ patchesJson6902:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/env/0/value
-        value: yellow
+        value: red
